@@ -127,25 +127,12 @@ public:
 		for (int i = 0; i <= current; i++)
 
 		{
-			
+
 			cout << arr[i] << " ";
 
 		}
 	}
-	void DisplayMinimum(int n)
-	{
 
-		for (int i = 0; i <= current; i++)
-
-		{
-			if (arr[i]<n)
-			{
-				cout << arr[i] << " ";
-			}
-			
-
-		}
-	}
 
 	bool MaxCheck()
 	{
@@ -194,45 +181,53 @@ public:
 
 	}
 
-};
+	void RunDisplayMinimum(int n){
 
-
-
-int main()
-{
-
-	Heap heap(8);
-
-	heap.insert(10);
-
-	heap.insert(6);
-
-	heap.insert(8);
-
-	heap.insert(7);
-
-	heap.insert(8);
-
-	heap.insert(1);
-
-	heap.insert(2);
-
-	heap.insert(-1);
-
-	if (heap.MaxCheck())
+		DisplayMinimum(0, n);
+	}
+	void DisplayMinimum(int index, int n)
 	{
 
-		cout << "yes \n";
-
+		if (index > current)
+		{
+			return;
+		}
+		else{
+			if (arr[index] < n){
+				cout << arr[index]<<" ";
+			}
+			DisplayMinimum(getleftchild(index), n);
+			DisplayMinimum(getrightchild(index), n);
+		}
 	}
 
-	else
+	};
+
+
+
+	int main()
 	{
 
-		cout << "No \n";
+		Heap heap(8);
 
+		heap.insert(10);
+
+		heap.insert(6);
+
+		heap.insert(8);
+
+		heap.insert(7);
+
+		heap.insert(8);
+
+		heap.insert(1);
+
+		heap.insert(2);
+
+		heap.insert(-1);
+
+		
+		heap.RunDisplayMinimum(8);
+		system("pause");
+		return 0;
 	}
-	heap.DisplayMinimum(8);
-	system("pause");
-	return 0;
-}
